@@ -17,18 +17,39 @@ body {
     text-align: center;
 }
 
+/* Card container */
 .card {
-    max-width: 420px;
+    width: 430px;        /* fixed width for desktop */
+    max-width: 90%;      /* responsive on small screens */
     margin: 0 auto;
     background: #ffffff;
     padding: 20px;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    min-height: 120px;
 }
 
+/* Headings */
 h2, h3 {
     color: #a04000;
     margin-bottom: 15px;
+}
+
+/* Tamil title heading */
+.tamil-title {
+    font-size: 20px;        
+    line-height: 1.35;
+    margin-top: -6px;
+    margin-bottom: 14px;
+    white-space: nowrap;     /* keep 1 line on desktop */
+}
+
+/* Mobile override */
+@media (max-width: 600px) {
+    .tamil-title {
+        font-size: 17px;
+        white-space: normal;  /* allow wrapping on mobile */
+    }
 }
 
 p {
@@ -37,10 +58,9 @@ p {
     margin-bottom: 5px;
 }
 
-/* Responsive field wrapper */
+/* Field wrapper */
 .field {
     width: 100%;
-    max-width: 100%;
     margin: 0 auto 12px;
 }
 
@@ -59,12 +79,13 @@ input {
 /* Display-only boxes */
 .display-box {
     width: 100%;
-    background: #fffaf2;
-    border: 1px solid #e0c097;
-    border-radius: 8px;
     padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #e0c097;
+    background: #fffaf2;
     font-size: 15px;
     line-height: 1.5;
+    text-align: center;
 }
 
 /* Buttons */
@@ -84,6 +105,7 @@ button:active {
     transform: scale(0.98);
 }
 
+/* Copy message */
 .msg {
     color: green;
     font-size: 14px;
@@ -98,7 +120,7 @@ button:active {
 <div class="card">
 
     <h2>Sri Ramanujar Temple</h2>
-    <h2>(ஸ்ரீ உபயகலையார் ராமாநுஜகூடம்)</h2>
+    <h2 class="tamil-title">(ஸ்ரீ உபயகலையார் ராமாநுஜகூடம்)</h2>
     <h3>Bank details for Thiruppani contribution</h3>
 
     <p>Account Name</p>
