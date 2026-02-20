@@ -1,28 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temple Donation</title>
+
 <style>
-body { font-family: Arial; padding: 10px; }
-button { padding: 10px; margin: 5px 0; width: 100%; }
-input { width: 100%; padding: 8px; margin-bottom: 10px; }
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(to bottom, #fff7e6, #fdebd0);
+    padding: 20px;
+    text-align: center;
+}
+
+.card {
+    max-width: 400px;
+    margin: auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+h2, h3 {
+    color: #a04000;
+    margin-bottom: 15px;
+}
+
+p {
+    font-weight: bold;
+    color: #6e2c00;
+    margin-bottom: 5px;
+}
+
+/* Common width for boxes & buttons */
+.field-width {
+    min-width: 260px;
+    max-width: 260px;
+    margin: 0 auto 10px auto;
+}
+
+/* Copyable inputs */
+input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #e0c097;
+    background: #fffaf2;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+}
+
+/* Display-only boxes for long text */
+.display-box {
+    width: 100%;
+    background: #fffaf2;
+    border: 1px solid #e0c097;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* Buttons same size as boxes */
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #f39c12, #d68910);
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.msg {
+    color: green;
+    font-size: 14px;
+    display: none;
+    margin-bottom: 10px;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 </style>
 </head>
+
 <body>
 
-<p><b>Account Number</b></p>
-<input id="acc" value="123456789012" readonly>
-<button onclick="copy('acc')">Copy Account Number</button>
+<div class="card">
 
-<p><b>IFSC Code</b></p>
-<input id="ifsc" value="ABCD0123456" readonly>
-<button onclick="copy('ifsc')">Copy IFSC</button>
+    <h2>Sri Ramanujar Temple</h2>
+    <h3>Bank details for Thiruppani contribution</h3>
+
+    <p>Account Name</p>
+    <div class="field-width">
+        <div class="display-box">
+            Sri Emperumanar Darshana Aikkya Sabha
+        </div>
+    </div>
+
+    <p>Account Number</p>
+    <div class="field-width">
+        <input id="acc" value="123456789012" readonly>
+        <button onclick="copyText('acc','msg1')">Copy Account Number</button>
+    </div>
+    <div id="msg1" class="msg">Account number copied 🙏</div>
+
+    <p>IFSC Code</p>
+    <div class="field-width">
+        <input id="ifsc" value="ABCD0123456" readonly>
+        <button onclick="copyText('ifsc','msg2')">Copy IFSC Code</button>
+    </div>
+    <div id="msg2" class="msg">IFSC code copied 🙏</div>
+
+    <p>Branch Name</p>
+    <div class="field-width">
+        <div class="display-box">
+            Canara Bank, SME Branch, Coimbatore
+        </div>
+    </div>
+
+</div>
 
 <script>
-function copy(id) {
-  document.getElementById(id).select();
-  document.execCommand("copy");
-  alert("Copied");
+function copyText(id, msgId) {
+    let input = document.getElementById(id);
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+
+    let msg = document.getElementById(msgId);
+    msg.style.display = "block";
+    setTimeout(() => msg.style.display = "none", 2000);
 }
 </script>
 
