@@ -5,7 +5,12 @@
 <title>Temple Donation</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
+    margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(to bottom, #fff7e6, #fdebd0);
     padding: 20px;
@@ -13,13 +18,12 @@ body {
 }
 
 .card {
-    max-width: 400px;
-    margin: auto;
+    max-width: 420px;
+    margin: 0 auto;
     background: #ffffff;
     padding: 20px;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    animation: fadeIn 1.2s ease-in-out;
 }
 
 h2, h3 {
@@ -33,17 +37,17 @@ p {
     margin-bottom: 5px;
 }
 
-/* Common width for boxes & buttons */
-.field-width {
-    min-width: 260px;
-    max-width: 260px;
-    margin: 0 auto 10px auto;
+/* Responsive field wrapper */
+.field {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 12px;
 }
 
 /* Copyable inputs */
 input {
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px;
     border-radius: 8px;
     border: 1px solid #e0c097;
     background: #fffaf2;
@@ -52,33 +56,32 @@ input {
     display: block;
 }
 
-/* Display-only boxes for long text */
+/* Display-only boxes */
 .display-box {
     width: 100%;
     background: #fffaf2;
     border: 1px solid #e0c097;
     border-radius: 8px;
-    padding: 10px 12px;
+    padding: 12px;
     font-size: 15px;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
-/* Buttons same size as boxes */
+/* Buttons */
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 8px;
     background: linear-gradient(to right, #f39c12, #d68910);
     color: #fff;
     font-size: 15px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 8px;
 }
 
-button:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+button:active {
+    transform: scale(0.98);
 }
 
 .msg {
@@ -86,18 +89,6 @@ button:hover {
     font-size: 14px;
     display: none;
     margin-bottom: 10px;
-}
-
-/* Fade animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 </style>
 </head>
@@ -111,28 +102,28 @@ button:hover {
     <h3>Bank details for Thiruppani contribution</h3>
 
     <p>Account Name</p>
-    <div class="field-width">
+    <div class="field">
         <div class="display-box">
             Sri Emperumanar Darshana Aikkya Sabha
         </div>
     </div>
 
     <p>Account Number</p>
-    <div class="field-width">
+    <div class="field">
         <input id="acc" value="2396101000573" readonly>
         <button onclick="copyText('acc','msg1')">Copy Account Number</button>
+        <div id="msg1" class="msg">Account number copied 🙏</div>
     </div>
-    <div id="msg1" class="msg">Account number copied 🙏</div>
 
     <p>IFSC Code</p>
-    <div class="field-width">
+    <div class="field">
         <input id="ifsc" value="CNRB0002396" readonly>
         <button onclick="copyText('ifsc','msg2')">Copy IFSC Code</button>
+        <div id="msg2" class="msg">IFSC code copied 🙏</div>
     </div>
-    <div id="msg2" class="msg">IFSC code copied 🙏</div>
 
     <p>Branch Name</p>
-    <div class="field-width">
+    <div class="field">
         <div class="display-box">
             Canara Bank, SME Branch, Coimbatore
         </div>
@@ -142,12 +133,12 @@ button:hover {
 
 <script>
 function copyText(id, msgId) {
-    let input = document.getElementById(id);
+    const input = document.getElementById(id);
     input.select();
     input.setSelectionRange(0, 99999);
     document.execCommand("copy");
 
-    let msg = document.getElementById(msgId);
+    const msg = document.getElementById(msgId);
     msg.style.display = "block";
     setTimeout(() => msg.style.display = "none", 2000);
 }
