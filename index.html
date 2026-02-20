@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font-family: Arial; padding: 10px; }
+button { padding: 10px; margin: 5px 0; width: 100%; }
+input { width: 100%; padding: 8px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<p><b>Account Number</b></p>
+<input id="acc" value="123456789012" readonly>
+<button onclick="copy('acc')">Copy Account Number</button>
+
+<p><b>IFSC Code</b></p>
+<input id="ifsc" value="ABCD0123456" readonly>
+<button onclick="copy('ifsc')">Copy IFSC</button>
+
+<script>
+function copy(id) {
+  document.getElementById(id).select();
+  document.execCommand("copy");
+  alert("Copied");
+}
+</script>
+
+</body>
+</html>
